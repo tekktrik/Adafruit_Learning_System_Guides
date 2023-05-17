@@ -72,7 +72,7 @@ jobs:
     steps:
     - name: Test
       run: |
-        echo "should run: ${{ needs.check-if-needed.outputs.answer"
+        echo "should run: ${{ needs.check-if-needed.outputs.answer }}"
     - uses: actions/setup-python@v4
       with:
         python-version: "3.x"
