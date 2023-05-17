@@ -21,12 +21,14 @@ jobs:
         run: |
           iscron=false
           [[ "${{ github.event_name }}" == "schedule" ]] && iscron=true
+          echo "is cron: $iscron"
           echo "status=$iscron" >> "$GITHUB_OUTPUT"
       - name: Check if dispatched
         id: check-dispatch
         run: |
           isdispatch=false
           [[ "${{ github.event_name }}" == "workflow_dispatch" ]] && isdispatch=true
+          echo "is dispatched: $isdispatch"
           echo "status=$isdispatch" >> "$GITHUB_OUTPUT"
       - name: Check for Arduino file updates
         id: check-updated
@@ -45,6 +47,7 @@ jobs:
                 break
             fi
           done
+          echo "is modified: $ischanged"
           echo "status=$ischanged" >> "$GITHUB_OUTPUT"
       - name: Output Arduino needed
         id: is-needed
@@ -55,6 +58,7 @@ jobs:
              [[ ${{ steps.check-updated.outputs.status }} == true ]]; then
               isneeded=true
           fi
+          echo "needs arduino: $isneeded"
           echo "answer=$isneeded" >> "$GITHUB_OUTPUT"
 
   arduino:
@@ -66,6 +70,9 @@ jobs:
     needs: check-if-needed
     if: ${{ needs.check-if-needed.outputs.answer == true }}
     steps:
+    - name: Test
+      run: |
+        echo "should run: ${{ needs.check-if-needed.outputs.answer"
     - uses: actions/setup-python@v4
       with:
         python-version: "3.x"
