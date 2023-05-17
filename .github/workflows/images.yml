@@ -1,4 +1,4 @@
-name: Generate folder images
+name: Generate folder images2
 
 on:
   schedule:
