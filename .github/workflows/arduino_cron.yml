@@ -61,6 +61,14 @@ jobs:
           echo "needs arduino: $isneeded"
           echo "answer=$isneeded" >> "$GITHUB_OUTPUT"
 
+  testtest:
+    runs-on: ubuntu-latest
+    needs: check-if-needed
+    steps:
+    - name: Test
+      run: |
+        echo "should run: ${{ needs.check-if-needed.outputs.answer }}"
+
   arduino:
     strategy:
       fail-fast: false
@@ -69,10 +77,6 @@ jobs:
     runs-on: ubuntu-latest
     needs: check-if-needed
     if: ${{ needs.check-if-needed.outputs.answer == true }}
-    steps:
-    - name: Test
-      run: |
-        echo "should run: ${{ needs.check-if-needed.outputs.answer }}"
     - uses: actions/setup-python@v4
       with:
         python-version: "3.x"
