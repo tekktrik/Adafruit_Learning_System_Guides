@@ -79,7 +79,7 @@ jobs:
     steps:
     - name: Check if Arduino needed
       run: |
-        if [[ "${{ needs.check-if-needed.outputs.answer }}"" != "true" ]]; then
+        if [[ "${{ needs.check-if-needed.outputs.answer }}" != "true" ]]; then
           echo "Arduino is not needed, skipping."
           exit 0
         fi
