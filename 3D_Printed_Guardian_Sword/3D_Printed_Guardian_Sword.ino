@@ -28,7 +28,7 @@ void setup() {
 #if defined (__AVR_ATtiny85__)
   if (F_CPU == 16000000) clock_prescale_set(clock_div_1);
 #endif
-  // End of trinket special code
+  // End of trinket special coded
 
   pixels.begin(); // This initializes the NeoPixel library.
 }
