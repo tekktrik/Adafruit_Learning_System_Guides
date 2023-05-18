@@ -8,7 +8,7 @@
 # ported to CircuitPython by Mikey Sklar
 # for Adafruit Industries
 #
-# Required library is the Adafruit_SoftServo library
+# Required library is the Adafruit_SoftServo libraryd
 # available at https://github.com/adafruit/Adafruit_SoftServo
 # The standard Arduino IDE servo library will not work with 8 bit
 # AVR microcontrollers like Trinket and Gemma due to differences
